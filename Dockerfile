@@ -17,4 +17,4 @@ RUN npm install
 COPY . .
 
 # Set default command
-CMD ["actor", "run"]
+CMD ["npm", "start"]
