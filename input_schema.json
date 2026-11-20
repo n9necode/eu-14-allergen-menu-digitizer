@@ -1,39 +1,62 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "EU-14 Allergen Menu Digitizer Input",
+  "title": "EU-14 Allergen Menu Digitizer",
   "type": "object",
   "schemaVersion": 1,
-  "required": ["menuImageUrls", "geminiApiKey"],
   "properties": {
     "menuImageUrls": {
+      "title": "Menu Image URLs",
       "type": "array",
-      "items": { "type": "string" },
-      "description": "Array of URLs to menu images or PDFs. Required."
+      "description": "URLs of menu images or PDFs to extract dishes from.",
+      "editor": "stringList",
+      "items": {
+        "type": "string"
+      }
     },
     "geminiApiKey": {
+      "title": "Gemini API Key",
       "type": "string",
-      "description": "User's own Gemini API key. The user supplies their own key."
+      "description": "Your Google Gemini API key (BYOK).",
+      "editor": "textfield",
+      "isSecret": true
     },
     "outputLanguage": {
+      "title": "Output Language",
       "type": "string",
-      "default": "en",
-      "description": "Language for translated dish names and ingredient display names."
+      "description": "Language for translated dish names.",
+      "editor": "textfield",
+      "default": "en"
     },
     "sourceLanguageHint": {
+      "title": "Source Language Hint",
       "type": "string",
-      "description": "Optional hint for non-Latin script menus (e.g., 'zh', 'ja', 'ar')."
+      "description": "Optional. Helps OCR if the menu is in a non-Latin script.",
+      "editor": "textfield"
     },
     "cuisineVertical": {
+      "title": "Cuisine Vertical",
       "type": "string",
-      "enum": ["italian", "indian", "japanese", "mexican", "general"],
+      "description": "Loads cuisine-specific allergen keyword overrides.",
+      "editor": "select",
       "default": "general",
-      "description": "Cuisine-specific allergen keyword override map."
+      "enum": ["general", "italian", "indian", "japanese", "mexican"],
+      "enumTitles": ["General", "Italian", "Indian", "Japanese", "Mexican"]
     },
     "maxPagesPerPdf": {
+      "title": "Max Pages Per PDF",
       "type": "integer",
-      "default": 10,
-      "description": "Cap on PDF pages rendered."
+      "description": "Cap on PDF pages rendered.",
+      "editor": "number",
+      "default": 10
+    },
+    "jurisdiction": {
+      "title": "Jurisdiction",
+      "type": "string",
+      "description": "Allergen framework to apply (EU-14 or US-9).",
+      "editor": "select",
+      "default": "EU",
+      "enum": ["EU", "US-CA"],
+      "enumTitles": ["EU (14 allergens)", "US-CA (9 allergens)"]
     }
   },
-  "additionalProperties": false
+  "required": ["menuImageUrls", "geminiApiKey"]
 }
