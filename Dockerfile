@@ -7,8 +7,8 @@ RUN apk update && apk add --no-cache poppler-utils
 # Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package.json package-lock.json ./
+# Copy package files (package-lock.json removed)
+COPY package.json ./
 
 # Install dependencies
 RUN npm install

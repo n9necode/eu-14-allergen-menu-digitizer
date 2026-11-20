@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "EU-14 Allergen Menu Digitizer Apify Actor",
   "scripts": {
-    "start": "node main.js",
+    "start": "node actor.js",
     "test": "node --test tests/"
   },
   "dependencies": {
