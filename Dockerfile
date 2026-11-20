@@ -1,17 +1,20 @@
-# Apify Actor base image with Node 20
 FROM apify/actor-node:20
 
-# PDF rendering support: poppler-utils (pdftoppm)
-# Include this only if you need PDF menus
-RUN apt-get update && apt-get install -y poppler-utils && rm -rf /var/lib/apt/lists/*
+# Install poppler-utils for PDF processing
+# Alpine Linux uses apk, not apt-get
+RUN apk update && apk add --no-cache poppler-utils
 
-# Copy dependency files and install production dependencies only
-COPY --chown=node:node package.json package-lock.json ./
-RUN npm ci --omit=dev
+# Set working directory
+WORKDIR /app
 
-# Copy the application code
-COPY --chown=node:node . ./
+# Copy package files
+COPY package.json package-lock.json ./
 
-USER node
+# Install dependencies
+RUN npm ci
 
-CMD ["node", "main.js"]
+# Copy source code
+COPY . .
+
+# Set default command
+CMD ["actor", "run"]
