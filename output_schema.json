@@ -1,0 +1,124 @@
+{  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "EU-14 Allergen Menu Digitizer Output",
+  "type": "object",
+  "properties": {
+    "dishName": {
+      "type": "string",
+      "description": "Translated dish name"
+    },
+    "originalName": {
+      "type": "string",
+      "description": "Dish name as printed on the menu"
+    },
+    "category": {
+      "type": "string",
+      "nullable": true,
+      "description": "Dish category, if available"
+    },
+    "price": {
+      "type": "string",
+      "nullable": true,
+      "description": "Price with currency symbol"
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "englishName": {
+            "type": "string",
+            "description": "English name of the ingredient"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Display name in outputLanguage"
+          },
+          "eu14Allergens": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "allergen": {
+                  "type": "string",
+                  "description": "EU-14 allergen name"
+                },
+                "confidence": {
+                  "type": "number",
+                  "description": "Confidence score 0-1"
+                }
+              },
+              "required": ["allergen", "confidence"]
+            },
+            "description": "List of EU-14 allergens found in this ingredient"
+          }
+        },
+        "required": ["englishName", "displayName", "eu14Allergens"]
+      },
+      "description": "List of ingredients with allergen info"
+    },
+    "dietaryType": {
+      "type": "string",
+      "enum": ["vegan", "vegetarian", "pescetarian", "other"],
+      "description": "Dietary classification of the dish"
+    },
+    "dietaryExplanation": {
+      "type": "string",
+      "description": "Human-readable explanation of dietary classification"
+    },
+    "allergenSummary": {
+      "type": "string",
+      "description": "Human-readable allergen summary (e.g. 'Contains gluten, milk')"
+    },
+    "nutritionEstimate": {
+      "type": "object",
+      "properties": {
+        "calories": {
+          "type": "number",
+          "description": "Estimated calories, null if unavailable"
+        },
+        "proteinG": {
+          "type": "number",
+          "description": "Estimated protein in grams, null if unavailable"
+        },
+        "fatG": {
+          "type": "number",
+          "description": "Estimated fat in grams, null if unavailable"
+        },
+        "carbsG": {
+          "type": "number",
+          "description": "Estimated carbs in grams, null if unavailable"
+        }
+      },
+      "required": ["calories", "proteinG", "fatG", "carbsG"],
+      "description": "Nutrition estimate per serving"
+    },
+    "sourceImageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the source menu image/PDF"
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Overall extraction confidence (0-1)"
+    },
+    "needsReview": {
+      "type": "boolean",
+      "description": "True if confidence < 0.6"
+    }
+  },
+  "required": [
+    "dishName",
+    "originalName",
+    "category",
+    "price",
+    "ingredients",
+    "dietaryType",
+    "dietaryExplanation",
+    "allergenSummary",
+    "nutritionEstimate",
+    "sourceImageUrl",
+    "confidence",
+    "needsReview"
+  ],
+  "additionalProperties": false
+}
