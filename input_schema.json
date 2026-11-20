@@ -7,7 +7,7 @@
   "properties": {
     "menuImageUrls": {
       "type": "array",
-      "items": { "type": "string", "format": "uri" },
+      "items": { "type": "string" },
       "description": "Array of URLs to menu images or PDFs. Required."
     },
     "geminiApiKey": {
