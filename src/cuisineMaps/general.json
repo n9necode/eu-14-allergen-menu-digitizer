@@ -1,0 +1,58 @@
+{
+  "cuisine": "general",
+  "allergenAliases": {
+    "gluten": ["gluten", "wheat", "wheat flour", "cereals containing gluten", "farina", "semolina", "semola"],
+    "crustaceans": ["crustacean", "crustaceans"],
+    "eggs": ["egg", "eggs"],
+    "fish": ["fish"],
+    "peanuts": ["peanut", "peanuts"],
+    "soy": ["soy", "soya", "soybean"],
+    "milk": ["milk", "dairy", "lactose"],
+    "nuts": ["tree nuts", "nuts"],
+    "celery": ["celery"],
+    "mustard": ["mustard"],
+    "sesame": ["sesame"],
+    "sulphites": ["sulphites", "sulfites", "sulphur dioxide"],
+    "lupin": ["lupin"],
+    "molluscs": ["mollusc", "molluscs", "shellfish"]
+  },
+  "rules": [
+    { "match": ["paneer"], "allergens": ["milk"], "confidence": 0.95 },
+    { "match": ["shoyu", "tamari"], "allergens": ["gluten", "soy"], "confidence": 0.95 },
+    { "match": ["pasta", "spaghetti", "bread", "flour", "dough", "pizza", "noodle"], "allergens": ["gluten"], "confidence": 0.9 },
+    { "match": ["cheese", "butter", "cream", "yogurt", "yoghurt", "mozzarella", "ricotta", "parmesan", "latte"], "allergens": ["milk"], "confidence": 0.9 },
+    { "match": ["egg", "eggs", "mayonnaise", "mayo"], "allergens": ["eggs"], "confidence": 0.9 },
+    { "match": ["fish", "salmon", "tuna", "cod", "anchovy", "sardine"], "allergens": ["fish"], "confidence": 0.9 },
+    { "match": ["shrimp", "prawn", "crab", "lobster", "crayfish"], "allergens": ["crustaceans"], "confidence": 0.9 },
+    { "match": ["clam", "mussel", "oyster", "scallop", "squid", "octopus"], "allergens": ["molluscs"], "confidence": 0.9 },
+    { "match": ["peanut", "peanuts"], "allergens": ["peanuts"], "confidence": 0.9 },
+    { "match": ["soy", "soya", "tofu", "edamame", "miso"], "allergens": ["soy"], "confidence": 0.9 },
+    { "match": ["almond", "walnut", "cashew", "pecan", "hazelnut", "pistachio", "macadamia", "pine nut"], "allergens": ["nuts"], "confidence": 0.9 },
+    { "match": ["celery"], "allergens": ["celery"], "confidence": 0.9 },
+    { "match": ["mustard"], "allergens": ["mustard"], "confidence": 0.9 },
+    { "match": ["sesame"], "allergens": ["sesame"], "confidence": 0.9 },
+    { "match": ["lupin", "lupini"], "allergens": ["lupin"], "confidence": 0.9 },
+    { "match": ["sulphite", "sulfite", "sulphur dioxide", "wine", "sherry", "port"], "allergens": ["sulphites"], "confidence": 0.5 }
+  ],
+  "compoundDishes": [
+    { "match": ["caesar"], "allergens": ["eggs", "milk", "fish"], "confidence": 0.7, "note": "caesar dressing" },
+    { "match": ["tiramisu"], "allergens": ["eggs", "milk"], "confidence": 0.85 },
+    { "match": ["pesto"], "allergens": ["nuts", "milk"], "confidence": 0.9 },
+    { "match": ["hummus"], "allergens": ["sesame"], "confidence": 0.9 },
+    { "match": ["satay"], "allergens": ["peanuts"], "confidence": 0.9 },
+    { "match": ["pad thai"], "allergens": ["peanuts", "eggs", "fish"], "confidence": 0.8 },
+    { "match": ["tempura"], "allergens": ["gluten", "eggs"], "confidence": 0.8 },
+    { "match": ["quiche"], "allergens": ["eggs", "milk", "gluten"], "confidence": 0.9 },
+    { "match": ["carbonara"], "allergens": ["eggs", "milk", "gluten"], "confidence": 0.9 },
+    { "match": ["bearnaise", "béarnaise"], "allergens": ["eggs", "milk"], "confidence": 0.9 },
+    { "match": ["hollandaise"], "allergens": ["eggs", "milk"], "confidence": 0.9 },
+    { "match": ["bouillabaisse"], "allergens": ["fish", "molluscs"], "confidence": 0.9 },
+    { "match": ["paella"], "allergens": ["crustaceans", "molluscs", "fish"], "confidence": 0.8 },
+    { "match": ["gumbo"], "allergens": ["crustaceans", "gluten"], "confidence": 0.8 },
+    { "match": ["spring roll", "samosa"], "allergens": ["gluten"], "confidence": 0.9 },
+    { "match": ["baba ganoush"], "allergens": ["sesame"], "confidence": 0.8 },
+    { "match": ["tom yum"], "allergens": ["crustaceans", "fish"], "confidence": 0.8 }
+  ],
+  "exceptions": []
+}
+

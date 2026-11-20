@@ -1,0 +1,12 @@
+node_modules/
+.dataset/
+INPUT.json
+OUTPUT.json
+*.log
+.env
+.env.example
+coverage/
+.local-node/
+.DS_Store
+test-menus/output/
+test-menus/*.output.json

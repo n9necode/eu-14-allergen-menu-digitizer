@@ -1,0 +1,58 @@
+{
+  "title": "EU-14 Allergen Menu Digitizer input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "menuImageUrls": {
+      "title": "Menu image or PDF URLs",
+      "type": "array",
+      "itemType": "string",
+      "description": "Publicly accessible URLs of menu images (JPG, PNG, WEBP) or PDF files to digitize. One output record per dish is produced per page.",
+      "preferredInput": "urls",
+      "editor": "stringList",
+      "required": true
+    },
+    "geminiApiKey": {
+      "title": "Gemini API key",
+      "type": "string",
+      "description": "Your own Google Gemini API key (free tier: https://aistudio.google.com). The Actor calls Gemini on YOUR key, so the actor owner pays nothing for AI inference. Treat this as a secret.",
+      "secret": true,
+      "required": true
+    },
+    "outputLanguage": {
+      "title": "Output language",
+      "type": "string",
+      "description": "Language for translated dish names and ingredient display names (ISO 639-1 code or name, e.g. 'en', 'de', 'fr', 'es', 'it').",
+      "default": "en",
+      "example": "en"
+    },
+    "sourceLanguageHint": {
+      "title": "Source language hint",
+      "type": "string",
+      "description": "Optional hint about the menu's language/script (e.g. 'ja', 'th', 'ar', 'hi') to improve extraction on non-Latin menus.",
+      "example": "ja"
+    },
+    "cuisineVertical": {
+      "title": "Cuisine vertical",
+      "type": "string",
+      "enum": ["italian", "indian", "japanese", "mexican", "general"],
+      "description": "Loads a cuisine-specific EU-14 allergen keyword override map for higher allergen accuracy on ethnic menus.",
+      "default": "general"
+    },
+    "maxPagesPerPdf": {
+      "title": "Max PDF pages",
+      "type": "integer",
+      "description": "Cap on the number of PDF pages rendered per PDF file (protects against huge menus).",
+      "default": 10,
+      "example": 10
+    },
+    "jurisdiction": {
+      "title": "Allergen jurisdiction",
+      "type": "string",
+      "description": "Regulatory regime for allergen labeling. 'EU' applies EU Regulation 1169/2011 (14 allergens).",
+      "enum": ["EU"],
+      "default": "EU"
+    }
+  },
+  "required": ["menuImageUrls", "geminiApiKey"]
+}

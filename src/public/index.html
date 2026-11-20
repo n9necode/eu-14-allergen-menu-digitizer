@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EU-14 Allergen Menu Digitizer</title>
+    <style>
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f9f9f9; color: #333; }
+        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h1 { margin-top: 0; color: #2c3e50; }
+        .input-group { margin-bottom: 20px; }
+        input[type="file"] { display: block; margin-top: 10px; }
+        button { background: #3498db; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 4px; cursor: pointer; width: 100%; }
+        button:hover { background: #2980b9; }
+        button:disabled { background: #95a5a6; cursor: not-allowed; }
+        #loading { display: none; margin-top: 20px; font-weight: bold; color: #e67e22; }
+        #error { display: none; margin-top: 20px; color: #e74c3c; background: #fadbd8; padding: 10px; border-radius: 4px; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 15px; border-radius: 4px; overflow-x: auto; margin-top: 20px; max-height: 500px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Menu Digitizer Demo</h1>
+        <p>Upload an Italian menu image to extract dishes and allergens.</p>
+        
+        <div class="input-group">
+            <label for="menuFile"><strong>Select Menu Image:</strong></label>
+            <input type="file" id="menuFile" accept="image/*">
+        </div>
+        
+        <button id="uploadBtn" onclick="runExtraction()">Run Extraction</button>
+        
+        <div id="loading">Processing menu with Gemini... Please wait.</div>
+        <div id="error"></div>
+        
+        <pre id="output" style="display:none;"></pre>
+    </div>
+</head>
+<body>
+</html>
