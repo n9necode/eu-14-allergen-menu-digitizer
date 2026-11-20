@@ -1,12 +1,27 @@
+# See https://help.github.com/articles/ignoring-files/ for more about .gitignore
+
+# Dependencies
 node_modules/
-.dataset/
-INPUT.json
-OUTPUT.json
-*.log
+
+# Environment variables
 .env
-.env.example
-coverage/
-.local-node/
+
+# Apify Actor specific
+.apify/
+apify_config.json
+
+# Docker
+.dockerignore
+
+# Output files
+/output_*.json
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# OS
 .DS_Store
-test-menus/output/
-test-menus/*.output.json
