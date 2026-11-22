@@ -1,0 +1,199 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "type": "object",
+    "properties": {
+      "dishName": {
+        "title": "Dish name",
+        "type": "string",
+        "description": "Dish name translated into the output language. Null if it could not be extracted.",
+        "example": "Margherita Pizza"
+      },
+      "originalName": {
+        "title": "Original name",
+        "type": "string",
+        "description": "Dish name exactly as printed on the menu. Null if not available.",
+        "example": "Pizza Margherita"
+      },
+      "category": {
+        "title": "Category",
+        "type": "string",
+        "description": "Menu section the dish belongs to (e.g. Pizze, Antipasti). Null if not available.",
+        "example": "Pizze"
+      },
+      "price": {
+        "title": "Price",
+        "type": "string",
+        "description": "Price including currency symbol, exactly as printed. Null if not available.",
+        "example": "10,00 €"
+      },
+      "ingredients": {
+        "title": "Ingredients",
+        "type": "array",
+        "description": "Atomic ingredients of the dish, each with its EU-14 (or US-9) allergen tags.",
+        "example": [
+          {
+            "englishName": "mozzarella",
+            "displayName": "mozzarella",
+            "eu14Allergens": [{ "allergen": "milk", "confidence": 0.95 }]
+          }
+        ],
+        "items": {
+          "type": "object",
+          "properties": {
+            "englishName": {
+              "title": "English name",
+              "type": "string",
+              "description": "Ingredient name in English.",
+              "example": "mozzarella"
+            },
+            "displayName": {
+              "title": "Display name",
+              "type": "string",
+              "description": "Ingredient name in the output language.",
+              "example": "mozzarella"
+            },
+            "eu14Allergens": {
+              "title": "EU-14 allergens",
+              "type": "array",
+              "description": "Allergen tags for this ingredient with confidence scores (0-1).",
+              "example": [{ "allergen": "milk", "confidence": 0.95 }],
+              "items": {
+                "type": "object",
+                "properties": {
+                  "allergen": {
+                    "title": "Allergen",
+                    "type": "string",
+                    "description": "Allergen key (EU-14 or US-9 framework), e.g. gluten, milk, eggs, peanuts.",
+                    "example": "milk"
+                  },
+                  "confidence": {
+                    "title": "Confidence",
+                    "type": "number",
+                    "description": "Confidence score for this allergen tag (0-1).",
+                    "example": 0.95
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "dietaryType": {
+        "title": "Dietary type",
+        "type": "string",
+        "description": "Dietary classification: vegan, vegetarian, pescetarian, or other.",
+        "enum": ["vegan", "vegetarian", "pescetarian", "other"],
+        "example": "vegetarian"
+      },
+      "dietaryExplanation": {
+        "title": "Dietary explanation",
+        "type": "string",
+        "description": "Human-readable explanation of the dietary classification.",
+        "example": "Free of meat and fish; contains dairy-derived ingredients."
+      },
+      "allergenSummary": {
+        "title": "Allergen summary",
+        "type": "string",
+        "description": "Human-readable summary of allergens in the dish, e.g. 'Contains gluten, milk'.",
+        "example": "Contains milk, gluten"
+      },
+      "nutritionEstimate": {
+        "title": "Nutrition estimate",
+        "type": "object",
+        "description": "Estimated nutrition per serving. Individual values are null when unknown.",
+        "example": { "calories": 280, "proteinG": 12, "fatG": 10, "carbsG": 34 },
+        "properties": {
+          "calories": {
+            "title": "Calories",
+            "type": "number",
+            "description": "Estimated calories. Null if unavailable.",
+            "example": 280
+          },
+          "proteinG": {
+            "title": "Protein (g)",
+            "type": "number",
+            "description": "Estimated protein in grams. Null if unavailable.",
+            "example": 12
+          },
+          "fatG": {
+            "title": "Fat (g)",
+            "type": "number",
+            "description": "Estimated fat in grams. Null if unavailable.",
+            "example": 10
+          },
+          "carbsG": {
+            "title": "Carbs (g)",
+            "type": "number",
+            "description": "Estimated carbohydrates in grams. Null if unavailable.",
+            "example": 34
+          }
+        }
+      },
+      "sourceImageUrl": {
+        "title": "Source image URL",
+        "type": "string",
+        "description": "URL of the menu image or PDF this dish was extracted from.",
+        "example": "https://example.com/menu.pdf"
+      },
+      "extractionTimestamp": {
+        "title": "Extraction timestamp",
+        "type": "string",
+        "description": "ISO 8601 timestamp of when the record was extracted.",
+        "example": "2026-11-22T00:45:00.000Z"
+      },
+      "menuEffectiveDate": {
+        "title": "Menu effective date",
+        "type": "string",
+        "description": "Validity date printed on the menu (e.g. 'Summer 2026'). Null if not present.",
+        "example": "Summer 2026"
+      },
+      "actorRunId": {
+        "title": "Actor run ID",
+        "type": "string",
+        "description": "Apify run ID that produced this record (or 'local-dev' for local runs).",
+        "example": "abc123xyz"
+      },
+      "jurisdiction": {
+        "title": "Jurisdiction",
+        "type": "string",
+        "description": "Allergen framework applied: EU (14 allergens) or US-CA (9 allergens).",
+        "enum": ["EU", "US-CA"],
+        "example": "EU"
+      },
+      "confidence": {
+        "title": "Confidence",
+        "type": "number",
+        "description": "Overall extraction confidence for this dish (0-1).",
+        "example": 0.91
+      },
+      "needsReview": {
+        "title": "Needs review",
+        "type": "boolean",
+        "description": "True when confidence is below 0.6 and a human should verify the record.",
+        "example": false
+      }
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": [
+          "dishName",
+          "originalName",
+          "category",
+          "price",
+          "dietaryType",
+          "allergenSummary",
+          "confidence",
+          "needsReview",
+          "sourceImageUrl"
+        ]
+      },
+      "display": {
+        "component": "table"
+      }
+    }
+  }
+}

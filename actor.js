@@ -82,6 +82,7 @@ const {
                     const diet = classifyDietary(dish);
                     dish.dietaryType = diet.dietaryType;
                     dish.dietaryExplanation = dish.dietaryExplanation || diet.dietaryExplanation;
+                    dish.jurisdiction = jurisdiction;
                     dish.nutritionEstimate = estimateNutrition(dish.ingredients);
                     if (!dish.allergenSummary) {
                         const tags = dish.ingredients.flatMap((i) => (i.eu14Allergens || []).map((a) => a.allergen));

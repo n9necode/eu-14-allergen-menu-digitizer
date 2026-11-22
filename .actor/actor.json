@@ -1,0 +1,14 @@
+{
+  "actorSpecification": 1,
+  "name": "eu-14-allergen-menu-digitizer",
+  "title": "EU-14 Allergen Menu Digitizer",
+  "description": "Digitizes restaurant menu images/PDFs and returns structured JSON with dish names, prices, EU-14 allergen tags, dietary classification, and nutrition estimates.",
+  "version": "1.0",
+  "dockerfile": "../Dockerfile",
+  "readme": "../ACTOR.md",
+  "input": "../input_schema.json",
+  "output": "./output_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  }
+}

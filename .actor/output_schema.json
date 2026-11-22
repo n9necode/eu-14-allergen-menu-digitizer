@@ -1,0 +1,14 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Menu Extraction Output",
+  "description": "Structured dish records extracted from restaurant menu images and PDFs.",
+  "type": "object",
+  "properties": {
+    "extractedDishes": {
+      "type": "string",
+      "title": "Extracted dishes",
+      "description": "Link to the dataset containing one record per dish with EU-14/US-9 allergen tags, dietary classification, and nutrition estimates.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}
