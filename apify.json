@@ -5,24 +5,14 @@
   "framework": "node",
   "startMode": "docker",
   "dockerFile": "Dockerfile",
-  "runMode": "apify/actor-node18",
   "memoryMb": 1024,
   "timeoutMinutes": 30,
-  "volumeGb": 5,
   "defaultResources": {
     "cpu": 2,
     "mb": 1024
   },
   "build": {
-    "nodeVersion": "18"
+    "nodeVersion": "20"
   },
-  "dependencies": [
-    "apify~0.5.0",
-    "pdf-parse~1.1.1",
-    "dotenv~16.3.1"
-  ],
-  "testCommand": "node ./test.js",
-  "apifyApi": {
-    "token": ""
-  }
+  "testCommand": "node --test tests/"
 }

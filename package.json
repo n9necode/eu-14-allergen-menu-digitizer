@@ -1,15 +1,13 @@
 {
-  "title": "eu-14-allergen-menu-digitizer",
-  "type": "module",
+  "name": "eu-14-allergen-menu-digitizer",
   "version": "1.0.0",
-  "description": "EU-14 Allergen Menu Digitizer Apify Actor",
+  "description": "Apify Actor that digitizes restaurant menu images/PDFs and returns structured JSON with dish names, prices, EU-14 allergen tags, dietary classification, and nutrition estimates.",
+  "main": "actor.js",
   "scripts": {
     "start": "node actor.js",
     "test": "node --test tests/"
   },
   "dependencies": {
-    "apify": "^0.5.0",
-    "pdf-parse": "^1.1.1",
-    "dotenv": "^16.3.1"
+    "apify": "^3.8.0"
   }
 }

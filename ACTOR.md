@@ -18,9 +18,9 @@ It uses a Gemini language model, but the key is supplied by the person running i
 ## How to run it on your own computer
 
 1. Open a terminal in this folder.
-2. Install the software the project needs.
+2. Install the software the project needs (`npm install`).
 3. Edit the input file with your menu URLs and your own Gemini key.
-4. Start it.
+4. Start it (`npm start`).
 
 ## How to put it on Apify so other people can use it
 
@@ -29,17 +29,17 @@ It uses a Gemini language model, but the key is supplied by the person running i
 3. Add the Gemini key as a secret setting.
 4. Build and run it.
 
-For PDF menus, the actor works best when PDF page rendering is installed on the server. The build file is already there. Install the rendering support if you want PDFs to work properly.
+For PDF menus, the actor works best when PDF page rendering is installed on the server. The build file (Dockerfile) already installs poppler-utils, so PDFs work out of the box.
 
 ## What you should check before anything goes live
 
-- The 15 unit tests pass with the command on line 7 of the README.
+- The unit tests pass with `npm test`.
 - The Gemini key works by trying one menu URL by hand.
 - A PDF with more than ten pages does not break the actor.
 
 ## Where the important files are
 
-- The main entry point is `main.js`.
+- The main entry point is `actor.js`.
 - The input and output rules are in `input_schema.json` and `README.md`.
 - The allergen maps are in `src/cuisineMaps*.js`.
 - The tests are in `tests/`.

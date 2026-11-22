@@ -1,71 +1,205 @@
+'use strict';
+
 const https = require('https');
+const { DEFAULT_MODEL } = require('./config');
+
+const EU14_LIST = 'gluten, crustaceans, eggs, fish, peanuts, soy, milk, nuts, celery, mustard, sesame, sulphites, lupin, molluscs';
+const US9_LIST = 'milk, eggs, fish, crustacean shellfish, tree nuts, peanuts, wheat, soy, sesame';
 
 const RESPONSE_SCHEMA = {
-  type:'object',properties:{dishes:{type:'array',items:{type:'object',
-    properties:{
-      dishName:{type:'string'},originalName:{type:'string'},category:{type:'string'},price:{type:'string'},
-      ingredients:{type:'array',items:{type:'object',properties:{englishName:{type:'string'},displayName:{type:'string'},eu14Allergens:{type:'array',items:{type:'object',properties:{allergen:{type:'string'},confidence:{type:'number'}},required:['allergen','confidence']}}},required:['englishName','displayName','eu14Allergens']}},
-      dietaryType:{type:'string'},dietaryExplanation:{type:'string'},allergenSummary:{type:'string'},
-      nutritionEstimate:{type:'object',properties:{calories:{type:'number'},proteinG:{type:'number'},fatG:{type:'number'},carbsG:{type:'number'}}},
-      sourceImageUrl:{type:'string'},confidence:{type:'number'},needsReview:{type:'boolean'}
-    },required:['dishName','originalName','ingredients','dietaryType','dietaryExplanation','allergenSummary','nutritionEstimate','sourceImageUrl','confidence','needsReview']}
-  }},required:['dishes']};
+    type: 'object',
+    properties: {
+        dishes: {
+            type: 'array',
+            items: {
+                type: 'object',
+                properties: {
+                    dishName: { type: 'string' },
+                    originalName: { type: 'string' },
+                    category: { type: 'string' },
+                    price: { type: 'string' },
+                    ingredients: {
+                        type: 'array',
+                        items: {
+                            type: 'object',
+                            properties: {
+                                englishName: { type: 'string' },
+                                displayName: { type: 'string' },
+                                eu14Allergens: {
+                                    type: 'array',
+                                    items: {
+                                        type: 'object',
+                                        properties: {
+                                            allergen: { type: 'string' },
+                                            confidence: { type: 'number' },
+                                        },
+                                        required: ['allergen', 'confidence'],
+                                    },
+                                },
+                            },
+                            required: ['englishName', 'displayName', 'eu14Allergens'],
+                        },
+                    },
+                    dietaryType: { type: 'string' },
+                    dietaryExplanation: { type: 'string' },
+                    allergenSummary: { type: 'string' },
+                    nutritionEstimate: {
+                        type: 'object',
+                        properties: {
+                            calories: { type: 'number' },
+                            proteinG: { type: 'number' },
+                            fatG: { type: 'number' },
+                            carbsG: { type: 'number' },
+                        },
+                    },
+                    sourceImageUrl: { type: 'string' },
+                    confidence: { type: 'number' },
+                    needsReview: { type: 'boolean' },
+                    menuEffectiveDate: { type: 'string' },
+                },
+                required: ['dishName', 'originalName', 'ingredients', 'dietaryType', 'dietaryExplanation', 'allergenSummary', 'nutritionEstimate', 'sourceImageUrl', 'confidence', 'needsReview'],
+            },
+        },
+    },
+    required: ['dishes'],
+};
 
-var SI=`You are an expert EU-14 allergen extraction AI. Analyze the provided restaurant menu image.
-Extract EVERY SINGLE DISH listed on the menu.
-For each dish, return a JSON object with a 'dishes' array containing:
-- dishName: string (translated to English)
-- originalName: string
-- category: string or null
-- price: string or null
-- ingredients: array of objects with 'englishName', 'displayName', and 'eu14Allergens' (array of {allergen, confidence})
-- dietaryType: 'vegan', 'vegetarian', 'pescetarian', or 'other'
-- allergenSummary: string
-- confidence: number between 0 and 1
+// Try these models in order; the first one that answers wins.
+const MODEL_CANDIDATES = [DEFAULT_MODEL, 'gemini-2.0-flash', 'gemini-1.5-flash', 'gemini-2.5-pro'];
 
-Scan the menu for any dates indicating when this menu is valid (e.g., 'Summer 2026', 'Valid from May 1'). Add a top-level field to your JSON output called 'menuEffectiveDate' containing this string, or null if no date is found.
-
-Do not skip dishes. Do not invent dishes. If an allergen is likely but not certain, assign a confidence score below 0.8.`;
-
-function callApi(k,ct,m){return new Promise((ok,no)=>{var d=JSON.stringify({contents:[{parts:ct}],generationConfig:{responseMimeType:'application/json',responseSchema:RESPONSE_SCHEMA},systemInstruction:{parts:[{text:SI}]}});var o={hostname:'generativelanguage.googleapis.com',port:443,path:'/v1beta/models/'+m+':generateContent?key='+encodeURIComponent(k),method:'POST',headers:{'Content-Type':'application/json','Content-Length':Buffer.byteLength(d)}};var r=https.request(o,function(res){var b='';res.on('data',function(c){b+=c});res.on('end',function(){if(res.statusCode>=400){console.error('[gem] HTTP',res.statusCode,':',b);no(new Error('API error '+res.statusCode))}else try{ok(JSON.parse(b))}catch(e){no(new Error('Invalid JSON'))}})});r.on('error',no);r.write(d);r.end();})}
-async function genBackoff(k,c,m,a){a=a||0;try{return await callApi(k,c,m)}catch(err){var m2=err.message||'';var rl=/429/i.test(m2);var tr=/5\\d{2}/.test(m2)||/transient/i.test(m2);if((rl||tr)&&a<4){await new Promise(function(x){setTimeout(x,1000*Math.pow(2,a)+Math.random()*1000)});return genBackoff(k,c,m,a+1)}throw err}}
-
-async function extractDishes(opts){
-  opts=opts||{};
-  if(!opts.geminiApiKey) throw new Error('geminiApiKey is required');
-  var images=opts.images||[];
-  var ct=images.map(function(i){if(i.inlineData)return{inlineData:{data:i.inlineData.data,mimeType:i.inlineData.mimeType}};if(i.buffer)return{inlineData:{data:i.buffer.toString('base64'),mimeType:i.mimeType||'image/jpeg'}};return{fileData:{fileUri:i.url}}});
-
-  var resp;
-  try{resp=await genBackoff(opts.geminiApiKey,ct,'gemini-3.8-flash')}catch(e1){
-    console.warn('[gem] flash failed, retry lite...');
-    try{resp=await genBackoff(opts.geminiApiKey,ct,'gemini-3.5-flash')}catch(e2){throw e2}
-  }
-
-  var cc=(resp&&resp.candidates)||[];
-  if(cc.length===0){console.warn('[gem] no candidates');return[]}
-
-  var text=(cc[0]&&cc[0].content&&cc[0].content.parts&&cc[0].content.parts[0]&&cc[0].content.parts[0].text)||'';
-  var parsed;
-  try{parsed=JSON.parse(text)}catch(e3){
-    console.warn('[gem] parse fail, retrying...');
-    try{var rr=await genBackoff(opts.geminiApiKey,ct,'gemini-2.5-pro');var rt=(rr&&rr.candidates&&rr.candidates[0]&&rr.candidates[0].content&&rr.candidates[0].content.parts&&rr.candidates[0].content.parts[0]&&rr.candidates[0].content.parts[0].text)||'{}';parsed=JSON.parse(rt)}catch(e4){throw new Error('Gemini parse failed after retries')}
-  }
-
-  var arr=parsed.dishes||[parsed];
-  return {dishes:arr.map(function(d){
-    var conf=typeof d.confidence==='number'?d.confidence:0.8;
-    return{
-      dishName:d.dishName||'',originalName:d.originalName||d.dishName||'',
-      category:d.category||null,price:d.price||null,
-      ingredients:(d.ingredients||[]).map(function(g){return{englishName:g.englishName||'',displayName:g.displayName||g.englishName||'',eu14Allergens:Array.isArray(g.eu14Allergens)?g.eu14Allergens.map(function(a){return{allergen:a.allergen,confidence:a.confidence||0.8}}):[]}}),
-      dietaryType:d.dietaryType||'other',dietaryExplanation:d.dietaryExplanation||'',
-      allergenSummary:d.allergenSummary||'',
-      nutritionEstimate:d.nutritionEstimate||{calories:null,proteinG:null,fatG:null,carbsG:null},
-      sourceImageUrl:d.sourceImageUrl||'',
-      confidence:conf,needsReview:conf<0.6
-    };
-  })};
+function buildSystemInstruction(opts) {
+    const framework = (opts.jurisdiction || 'EU') === 'US-CA'
+        ? 'US-9 (US/California)'
+        : 'EU-14 (Regulation (EU) No 1169/2011)';
+    const allergens = (opts.jurisdiction || 'EU') === 'US-CA' ? US9_LIST : EU14_LIST;
+    const lang = opts.outputLanguage || 'en';
+    const hint = opts.sourceLanguageHint
+        ? ` The menu may be written in ${opts.sourceLanguageHint}; translate dish names and ingredient display names to ${lang}.`
+        : ` Translate dish names and ingredient display names to ${lang}.`;
+    return 'You are an expert allergen extraction AI for restaurant menus.'
+        + ` Apply the ${framework} allergen framework: ${allergens}.`
+        + ' Extract EVERY SINGLE DISH listed on the menu. Do not skip dishes. Do not invent dishes.'
+        + " For each dish return JSON with a 'dishes' array containing:"
+        + ' - dishName (translated), originalName (as printed), category (string or null), price (string or null with currency symbol),'
+        + ' - ingredients: array of {englishName, displayName, eu14Allergens: [{allergen, confidence 0-1}]},'
+        + " - dietaryType: 'vegan'|'vegetarian'|'pescetarian'|'other',"
+        + ' - dietaryExplanation, allergenSummary, nutritionEstimate: {calories, proteinG, fatG, carbsG} (numbers or null),'
+        + ' - confidence (0-1 overall extraction confidence), needsReview (true if confidence < 0.6).'
+        + ' If an allergen is likely but not certain, assign a confidence below 0.8.'
+        + " Scan the menu for a validity date (e.g. 'Summer 2026') and add a top-level 'menuEffectiveDate' string, or null."
+        + hint;
 }
 
-module.exports={extractDishes};
+function callApi(key, contents, model, systemInstruction) {
+    return new Promise((resolve, reject) => {
+        const body = JSON.stringify({
+            contents: [{ parts: contents }],
+            generationConfig: { responseMimeType: 'application/json', responseSchema: RESPONSE_SCHEMA },
+            systemInstruction: { parts: [{ text: systemInstruction }] },
+        });
+        const options = {
+            hostname: 'generativelanguage.googleapis.com',
+            port: 443,
+            path: `/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`,
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
+        };
+        const req = https.request(options, (res) => {
+            let buf = '';
+            res.on('data', (c) => { buf += c; });
+            res.on('end', () => {
+                if (res.statusCode >= 400) {
+                    console.error(`[gemini] HTTP ${res.statusCode} for model ${model}: ${buf.slice(0, 300)}`);
+                    reject(new Error(`Gemini API error ${res.statusCode} (${model})`));
+                    return;
+                }
+                try { resolve(JSON.parse(buf)); } catch (e) { reject(new Error(`Invalid JSON from Gemini (${model})`)); }
+            });
+        });
+        req.on('error', reject);
+        req.write(body);
+        req.end();
+    });
+}
+
+async function callWithBackoff(key, contents, model, systemInstruction, attempt = 0) {
+    try {
+        return await callApi(key, contents, model, systemInstruction);
+    } catch (err) {
+        const msg = err && err.message ? err.message : '';
+        const retriable = /429|5\d\d|transient|ECONNRESET|ETIMEDOUT|timeout/i.test(msg);
+        if (retriable && attempt < 4) {
+            await new Promise((r) => setTimeout(r, 1000 * 2 ** attempt + Math.random() * 1000));
+            return callWithBackoff(key, contents, model, systemInstruction, attempt + 1);
+        }
+        throw err;
+    }
+}
+
+function textOf(resp) {
+    const c = resp && resp.candidates && resp.candidates[0];
+    const parts = c && c.content && c.content.parts;
+    return (parts && parts[0] && parts[0].text) || '';
+}
+
+async function generateOnce(key, contents, model, systemInstruction) {
+    const resp = await callWithBackoff(key, contents, model, systemInstruction);
+    const text = textOf(resp);
+    if (!text) throw new Error(`Empty response from Gemini (${model})`);
+    try { return JSON.parse(text); } catch (e) { throw new Error(`JSON parse failed (${model})`); }
+}
+
+async function extractDishes(opts) {
+    opts = opts || {};
+    if (!opts.geminiApiKey) throw new Error('geminiApiKey is required');
+    const images = opts.images || [];
+    if (images.length === 0) throw new Error('No images/pages to process');
+
+    const contents = images.map((i) => {
+        if (i.inlineData) return { inlineData: { data: i.inlineData.data, mimeType: i.inlineData.mimeType } };
+        if (i.buffer) return { inlineData: { data: i.buffer.toString('base64'), mimeType: i.mimeType || 'image/jpeg' } };
+        if (i.url) return { fileData: { fileUri: i.url } };
+        throw new Error('Unsupported image entry');
+    });
+
+    const systemInstruction = buildSystemInstruction(opts);
+
+    let lastErr = null;
+    for (const model of MODEL_CANDIDATES) {
+        try {
+            const parsed = await generateOnce(opts.geminiApiKey, contents, model, systemInstruction);
+            console.log(`[gemini] Used model: ${model}`);
+            const dishArr = Array.isArray(parsed) ? parsed : (parsed.dishes || []);
+            return {
+                dishes: dishArr.map((d) => ({
+                    dishName: d.dishName || '',
+                    originalName: d.originalName || d.dishName || '',
+                    category: d.category || null,
+                    price: d.price || null,
+                    ingredients: (d.ingredients || []).map((g) => ({
+                        englishName: g.englishName || '',
+                        displayName: g.displayName || g.englishName || '',
+                        eu14Allergens: Array.isArray(g.eu14Allergens)
+                            ? g.eu14Allergens.map((a) => ({ allergen: a.allergen, confidence: typeof a.confidence === 'number' ? a.confidence : 0.8 }))
+                            : [],
+                    })),
+                    dietaryType: d.dietaryType || 'other',
+                    dietaryExplanation: d.dietaryExplanation || '',
+                    allergenSummary: d.allergenSummary || '',
+                    nutritionEstimate: d.nutritionEstimate || { calories: null, proteinG: null, fatG: null, carbsG: null },
+                    sourceImageUrl: d.sourceImageUrl || '',
+                    confidence: typeof d.confidence === 'number' ? d.confidence : 0.8,
+                    needsReview: typeof d.confidence === 'number' ? d.confidence < 0.6 : true,
+                    menuEffectiveDate: d.menuEffectiveDate || null,
+                })),
+                menuEffectiveDate: parsed.menuEffectiveDate || null,
+            };
+        } catch (err) {
+            lastErr = err;
+            console.warn(`[gemini] Model ${model} failed: ${err.message}`);
+        }
+    }
+    throw lastErr || new Error('All Gemini models failed');
+}
+
+module.exports = { extractDishes, buildSystemInstruction, MODEL_CANDIDATES };

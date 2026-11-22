@@ -1,1 +1,8 @@
-{"build": {"nodeVersion": "18"}, "runMode": "apify/actor-node18", "memoryMb": 1024, "timeoutMinutes": 30}
+{
+  "build": {
+    "nodeVersion": "20"
+  },
+  "runMode": "apify/actor-node20",
+  "memoryMb": 1024,
+  "timeoutMinutes": 30
+}

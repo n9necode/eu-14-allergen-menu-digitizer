@@ -29,6 +29,7 @@ describe('responseParser', () => {
     assertNode.strictEqual(d.sourceImageUrl, 'http://example.com/m.pdf');
     assertNode.strictEqual(d.confidence, 0.91);
     assertNode.strictEqual(d.needsReview, false);
+    assertNode.deepStrictEqual(d.nutritionEstimate, { calories: 280, proteinG: 12, fatG: 10, carbsG: 34 });
   });
 
   it('flags low confidence and filters non-EU14 allergens', () => {
@@ -65,8 +66,8 @@ describe('responseParser', () => {
     assertNode.ok(d.extractionTimestamp, 'extractionTimestamp should be present');
     assertNode.strictEqual(typeof d.extractionTimestamp, 'string', 'extractionTimestamp should be a string');
     assertNode.strictEqual(d.extractionTimestamp.length > 0, true, 'extractionTimestamp should not be empty');
-    // actorRunId defaults to 'local-dev' when APIFY_ACTOR_RUN_ID is not set
-    assertNode.ok(d.actorRunId, 'actorRunId should be present');
-    assertNode.strictEqual(d.actorRunId, 'local-dev', 'actorRunId should be local-dev when APIFY_ACTOR_RUN_ID is not set, or test-run-123 when set');
+    // actorRunId defaults to 'local-dev' when APIFY_ACTOR_RUN_ID is not set,
+    // and takes the platform run id when it is set.
+    assertNode.ok(d.actorRunId && typeof d.actorRunId === 'string' && d.actorRunId.length > 0, 'actorRunId should be a non-empty string');
   });
 });

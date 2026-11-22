@@ -46,13 +46,17 @@ function cleanIngredient(raw) {
   };
 }
 
+function cleanNumber(v) {
+  return typeof v === 'number' && isFinite(v) ? Math.round(v * 10) / 10 : null;
+}
+
 function cleanNutrition(raw) {
   if (!raw || typeof raw !== 'object') return { calories: null, proteinG: null, fatG: null, carbsG: null };
   return {
-    calories: clamp01 == null && typeof raw.calories === 'number' && isFinite(raw.calories) ? Math.round(raw.calories * 10) / 10 : null,
-    proteinG: null,
-    fatG: null,
-    carbsG: null
+    calories: cleanNumber(raw.calories),
+    proteinG: cleanNumber(raw.proteinG),
+    fatG: cleanNumber(raw.fatG),
+    carbsG: cleanNumber(raw.carbsG)
   };
 }
 
