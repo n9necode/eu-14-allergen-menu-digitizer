@@ -7,7 +7,7 @@ This AI-powered Actor digitizes restaurant menus and extracts the 14 EU allergen
 
 ## How to Extract Allergens from Restaurant Menus
 1. Provide the URL to your menu image or PDF.
-2. Paste your Gemini or Groq API key.
+2. Paste your Gemini API key.
 3. Select your jurisdiction (`EU` for 14 allergens, or `US-CA` for 9).
 4. Run the Actor and download your JSON dataset.
 
@@ -24,7 +24,7 @@ The Actor accepts standard image formats (JPG, PNG, WEBP) and PDF menus. It uses
 Every dish is returned as a JSON object containing `dishName`, `price`, `ingredients`, `eu14Allergens` (with confidence scores), `dietaryType`, and `nutritionEstimate`. Records with a confidence score below 0.6 are flagged with `needsReview: true`.
 
 ## The "Italian Moat"
-This Actor includes a proprietary 113-rule keyword engine specifically trained for Italian cuisine. It automatically flags ingredients like *semolina* (gluten), *ghee* (milk), and *guanciale* (pork) with high accuracy.
+This Actor includes a proprietary 131-rule keyword engine specifically trained for Italian cuisine (131 ingredient rules, plus 15 compound-dish rules and 7 exceptions). It automatically flags ingredients like *semolina* (gluten), *ghee* (milk), and *guanciale* (pork) with high accuracy.
 
 ## Pricing
 This Actor uses a Bring-Your-Own-Key (BYOK) model. You pay Apify only for compute time, and you pay your AI provider directly for API usage. There are no inference markups.

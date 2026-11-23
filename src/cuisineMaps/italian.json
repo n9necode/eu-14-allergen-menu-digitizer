@@ -1,1322 +1,180 @@
 {
   "cuisine": "italian",
   "allergenAliases": {
-    "gluten": [
-      "gluten",
-      "wheat",
-      "farina",
-      "semolina",
-      "semola"
-    ],
-    "milk": [
-      "milk",
-      "dairy",
-      "lactose",
-      "latte",
-      "burro",
-      "panna",
-      "mozzarella",
-      "parmigiano",
-      "pecorino",
-      "ricotta"
-    ],
-    "eggs": [
-      "egg",
-      "eggs",
-      "uovo",
-      "uova"
-    ],
-    "fish": [
-      "fish",
-      "acciughe",
-      "alici",
-      "tonno",
-      "baccalà"
-    ],
-    "crustaceans": [
-      "crustacean",
-      "crustaceans",
-      "gamberi",
-      "scampi",
-      "aragosta"
-    ],
-    "molluscs": [
-      "mollusc",
-      "molluscs",
-      "shellfish",
-      "vongole",
-      "cozze",
-      "calamari",
-      "seppie",
-      "polpo",
-      "ostriche"
-    ],
-    "nuts": [
-      "tree nuts",
-      "nuts",
-      "mandorle",
-      "noci",
-      "pistacchio",
-      "nocciole",
-      "pinoli"
-    ],
-    "peanuts": [
-      "peanut",
-      "peanuts",
-      "arachidi"
-    ],
-    "soy": [
-      "soy",
-      "soya",
-      "soybean",
-      "soia"
-    ],
-    "sesame": [
-      "sesame",
-      "sesamo"
-    ],
-    "celery": [
-      "celery",
-      "sedano"
-    ],
-    "mustard": [
-      "mustard",
-      "senape",
-      "mostarda"
-    ],
-    "lupin": [
-      "lupin",
-      "lupini"
-    ],
-    "sulphites": [
-      "sulphites",
-      "sulfites",
-      "sulphur dioxide",
-      "vino",
-      "aceto"
-    ]
+    "gluten": ["gluten", "wheat", "farina", "semolina", "semola"],
+    "milk": ["milk", "dairy", "lactose", "latte", "burro", "panna", "mozzarella", "parmigiano", "pecorino", "ricotta"],
+    "eggs": ["egg", "eggs", "uovo", "uova"],
+    "fish": ["fish", "acciughe", "alici", "tonno", "baccalà"],
+    "crustaceans": ["crustacean", "crustaceans", "gamberi", "scampi", "aragosta"],
+    "molluscs": ["mollusc", "molluscs", "shellfish", "vongole", "cozze", "calamari", "seppie", "polpo", "ostriche"],
+    "nuts": ["tree nuts", "nuts", "mandorle", "noci", "pistacchio", "nocciole", "pinoli"],
+    "peanuts": ["peanut", "peanuts", "arachidi"],
+    "soy": ["soy", "soya", "soybean", "soia"],
+    "sesame": ["sesame", "sesamo"],
+    "celery": ["celery", "sedano"],
+    "mustard": ["mustard", "senape", "mostarda"],
+    "lupin": ["lupin", "lupini"],
+    "sulphites": ["sulphites", "sulfites", "sulphur dioxide", "vino", "aceto"]
   },
   "rules": [
-    {
-      "match": [
-        "semolina"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "farina"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "farina 00"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "farina di grano"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "semola"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pasta"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "spaghetti"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "penne"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "rigatoni"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "tagliatelle"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "fettuccine"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pappardelle"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "lasagna"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "lasagne"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "ravioli"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "tortellini"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "cappelletti"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "gnocchi"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "pane"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pagnotta"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "focaccia"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pizza"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "panko"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pangrattato"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "cous cous"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "farro"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "orzo"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "cannoli"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "arancini"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "panzerotti"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "milanese"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "alla milanese"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "crostini"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "bruschetta"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "piadina"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "tigelle"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "grissini"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "burro"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "ghee"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "panna"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "latte"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "mozzarella"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "mozzarella di bufala"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "parmigiano"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "parmigiano reggiano"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "parmesan"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pecorino"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pecorino romano"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "ricotta"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "mascarpone"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "gorgonzola"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "provolone"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "taleggio"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "fontina"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "grana padano"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "besciamella"
-      ],
-      "allergens": [
-        "milk",
-        "gluten"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "béchamel"
-      ],
-      "allergens": [
-        "milk",
-        "gluten"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "gelato"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "panna cotta"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "cacio e pepe"
-      ],
-      "allergens": [
-        "milk",
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "quattro formaggi"
-      ],
-      "allergens": [
-        "milk",
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "burrata"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "stracciatella"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "uova"
-      ],
-      "allergens": [
-        "eggs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "uovo"
-      ],
-      "allergens": [
-        "eggs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pasta all'uovo"
-      ],
-      "allergens": [
-        "eggs",
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "frittata"
-      ],
-      "allergens": [
-        "eggs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "zabaglione"
-      ],
-      "allergens": [
-        "eggs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "panettone"
-      ],
-      "allergens": [
-        "gluten",
-        "eggs",
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pandoro"
-      ],
-      "allergens": [
-        "gluten",
-        "eggs",
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "acciughe"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "alici"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "tonno"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pesce"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "baccalà"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "stoccafisso"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "bottarga"
-      ],
-      "allergens": [
-        "fish"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "gamberi"
-      ],
-      "allergens": [
-        "crustaceans"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "mazzancolle"
-      ],
-      "allergens": [
-        "crustaceans"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "scampi"
-      ],
-      "allergens": [
-        "crustaceans"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "aragosta"
-      ],
-      "allergens": [
-        "crustaceans"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "granchio"
-      ],
-      "allergens": [
-        "crustaceans"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "vongole"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "cozze"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "calamari"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "polpo"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "seppie"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "ostriche"
-      ],
-      "allergens": [
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "frutti di mare"
-      ],
-      "allergens": [
-        "molluscs",
-        "crustaceans",
-        "fish"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "mandorle"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "noci"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pistacchio"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pistacchi"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "nocciole"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pinoli"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "amaretti"
-      ],
-      "allergens": [
-        "nuts",
-        "eggs"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "marzapane"
-      ],
-      "allergens": [
-        "nuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "torrone"
-      ],
-      "allergens": [
-        "nuts",
-        "eggs"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "arachidi"
-      ],
-      "allergens": [
-        "peanuts"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "soia"
-      ],
-      "allergens": [
-        "soy"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "tofu"
-      ],
-      "allergens": [
-        "soy"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "sesamo"
-      ],
-      "allergens": [
-        "sesame"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "sesamini"
-      ],
-      "allergens": [
-        "sesame"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "pane con sesamo"
-      ],
-      "allergens": [
-        "sesame",
-        "gluten"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "sedano"
-      ],
-      "allergens": [
-        "celery"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "senape"
-      ],
-      "allergens": [
-        "mustard"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "mostarda"
-      ],
-      "allergens": [
-        "mustard"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "lupini"
-      ],
-      "allergens": [
-        "lupin"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "vino"
-      ],
-      "allergens": [
-        "sulphites"
-      ],
-      "confidence": 0.7
-    },
-    {
-      "match": [
-        "vino bianco"
-      ],
-      "allergens": [
-        "sulphites"
-      ],
-      "confidence": 0.7
-    },
-    {
-      "match": [
-        "vino rosso"
-      ],
-      "allergens": [
-        "sulphites"
-      ],
-      "confidence": 0.7
-    },
-    {
-      "match": [
-        "aceto"
-      ],
-      "allergens": [
-        "sulphites"
-      ],
-      "confidence": 0.7
-    },
-    {
-      "match": [
-        "aceto di vino"
-      ],
-      "allergens": [
-        "sulphites"
-      ],
-      "confidence": 0.7
-    }
+    {"match": ["semolina"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["farina"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["farina 00"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["farina di grano"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["semola"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pasta"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["spaghetti"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["penne"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["rigatoni"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["tagliatelle"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["fettuccine"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pappardelle"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["lasagna"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["lasagne"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["ravioli"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["tortellini"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["cappelletti"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["gnocchi"], "allergens": ["gluten"], "confidence": 0.85},
+    {"match": ["orecchiette"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["fusilli"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["farfalle"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["linguine"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["bucatini"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["conchiglie"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["maltagliati"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pane"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pagnotta"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["focaccia"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pizza"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["panco"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["pangrattato"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["cous cous"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["farro"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["orzo"], "allergens": ["gluten"], "confidence": 0.9},
+    {"match": ["cannoli"], "allergens": ["gluten"], "confidence": 0.85},
+    {"match": ["arancini"], "allergens": ["gluten"], "confidence": 0.85},
+    {"match": ["panzerotti"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["milanese"], "allergens": ["gluten"], "confidence": 0.9},
+    {"match": ["alla milanese"], "allergens": ["gluten"], "confidence": 0.9},
+    {"match": ["crostini"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["bruschetta"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["piadina"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["tigelle"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["grissini"], "allergens": ["gluten"], "confidence": 0.95},
+    {"match": ["burro"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["ghee"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["panna"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["latte"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["mozzarella"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["mozzarella di bufala"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["parmigiano"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["parmigiano reggiano"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["parmesan"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["pecorino"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["pecorino romano"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["ricotta"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["mascarpone"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["gorgonzola"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["provolone"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["taleggio"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["fontina"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["grana padano"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["scamorza"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["caciotta"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["crescenza"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["squacquerone"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["stracchino"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["robiola"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["montasio"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["besciamella"], "allergens": ["milk", "gluten"], "confidence": 0.9},
+    {"match": ["béchamel"], "allergens": ["milk", "gluten"], "confidence": 0.9},
+    {"match": ["gelato"], "allergens": ["milk"], "confidence": 0.9},
+    {"match": ["panna cotta"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["cacio e pepe"], "allergens": ["milk", "gluten"], "confidence": 0.95},
+    {"match": ["quattro formaggi"], "allergens": ["milk", "gluten"], "confidence": 0.95},
+    {"match": ["burrata"], "allergens": ["milk"], "confidence": 0.95},
+    {"match": ["stracciatella"], "allergens": ["milk"], "confidence": 0.9},
+    {"match": ["uova"], "allergens": ["eggs"], "confidence": 0.95},
+    {"match": ["uovo"], "allergens": ["eggs"], "confidence": 0.95},
+    {"match": ["pasta all'uovo"], "allergens": ["eggs", "gluten"], "confidence": 0.95},
+    {"match": ["frittata"], "allergens": ["eggs"], "confidence": 0.95},
+    {"match": ["zabaione"], "allergens": ["eggs"], "confidence": 0.95},
+    {"match": ["panettone"], "allergens": ["gluten", "eggs", "milk"], "confidence": 0.95},
+    {"match": ["pandoro"], "allergens": ["gluten", "eggs", "milk"], "confidence": 0.95},
+    {"match": ["acciughe"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["alici"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["tonno"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["pesce"], "allergens": ["fish"], "confidence": 0.9},
+    {"match": ["baccalà"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["stoccafisso"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["bottarga"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["branzino"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["orata"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["spigola"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["pesce spada"], "allergens": ["fish"], "confidence": 0.95},
+    {"match": ["gamberi"], "allergens": ["crustaceans"], "confidence": 0.95},
+    {"match": ["mazzancolle"], "allergens": ["crustaceans"], "confidence": 0.95},
+    {"match": ["scampi"], "allergens": ["crustaceans"], "confidence": 0.95},
+    {"match": ["aragosta"], "allergens": ["crustaceans"], "confidence": 0.95},
+    {"match": ["granchio"], "allergens": ["crustaceans"], "confidence": 0.95},
+    {"match": ["vongole"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["cozze"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["calamari"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["polpo"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["seppie"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["ostriche"], "allergens": ["molluscs"], "confidence": 0.95},
+    {"match": ["frutti di mare"], "allergens": ["molluscs", "crustaceans", "fish"], "confidence": 0.9},
+    {"match": ["mandorle"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["noci"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["pistacchio"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["pistacchi"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["nocciole"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["pinoli"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["anacardi"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["noci pecan"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["amaretti"], "allergens": ["nuts", "eggs"], "confidence": 0.9},
+    {"match": ["marzapane"], "allergens": ["nuts"], "confidence": 0.95},
+    {"match": ["torrone"], "allergens": ["nuts", "eggs"], "confidence": 0.9},
+    {"match": ["arachidi"], "allergens": ["peanuts"], "confidence": 0.95},
+    {"match": ["soia"], "allergens": ["soy"], "confidence": 0.9},
+    {"match": ["tofu"], "allergens": ["soy"], "confidence": 0.95},
+    {"match": ["sesamo"], "allergens": ["sesame"], "confidence": 0.95},
+    {"match": ["sesamini"], "allergens": ["sesame"], "confidence": 0.95},
+    {"match": ["pane con sesamo"], "allergens": ["sesame", "gluten"], "confidence": 0.95},
+    {"match": ["sedano"], "allergens": ["celery"], "confidence": 0.95},
+    {"match": ["senape"], "allergens": ["mustard"], "confidence": 0.95},
+    {"match": ["mostarda"], "allergens": ["mustard"], "confidence": 0.9},
+    {"match": ["lupini"], "allergens": ["lupin"], "confidence": 0.95},
+    {"match": ["vino"], "allergens": ["sulphites"], "confidence": 0.7},
+    {"match": ["vino bianco"], "allergens": ["sulphites"], "confidence": 0.7},
+    {"match": ["vino rosso"], "allergens": ["sulphites"], "confidence": 0.7},
+    {"match": ["aceto"], "allergens": ["sulphites"], "confidence": 0.7},
+    {"match": ["aceto di vino"], "allergens": ["sulphites"], "confidence": 0.7}
   ],
   "compoundDishes": [
-    {
-      "match": [
-        "carbonara"
-      ],
-      "allergens": [
-        "gluten",
-        "milk",
-        "eggs"
-      ],
-      "confidence": 0.9,
-      "note": "pasta + egg + pecorino"
-    },
-    {
-      "match": [
-        "cacio e pepe"
-      ],
-      "allergens": [
-        "gluten",
-        "milk"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "amatriciana"
-      ],
-      "allergens": [
-        "gluten",
-        "milk"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "tiramisu",
-        "tiramisù"
-      ],
-      "allergens": [
-        "gluten",
-        "milk",
-        "eggs"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "lasagna",
-        "lasagne"
-      ],
-      "allergens": [
-        "gluten",
-        "milk",
-        "eggs"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "parmigiana"
-      ],
-      "allergens": [
-        "gluten",
-        "milk"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "match": [
-        "arancini",
-        "arancine"
-      ],
-      "allergens": [
-        "gluten",
-        "milk",
-        "eggs"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "cannoli"
-      ],
-      "allergens": [
-        "gluten",
-        "milk",
-        "nuts"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "fritto misto"
-      ],
-      "allergens": [
-        "gluten",
-        "fish",
-        "crustaceans",
-        "molluscs"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "spaghetti alle vongole"
-      ],
-      "allergens": [
-        "gluten",
-        "molluscs"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "match": [
-        "risotto ai frutti di mare"
-      ],
-      "allergens": [
-        "molluscs",
-        "crustaceans",
-        "fish",
-        "milk"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "bistecca alla fiorentina"
-      ],
-      "allergens": [],
-      "confidence": 0.7
-    }
+    {"match": ["carbonara"], "allergens": ["gluten", "milk", "eggs"], "confidence": 0.9, "note": "pasta + egg + pecorino"},
+    {"match": ["cacio e pepe"], "allergens": ["gluten", "milk"], "confidence": 0.95},
+    {"match": ["amatriciana"], "allergens": ["gluten", "milk"], "confidence": 0.85},
+    {"match": ["tiramisu", "tiramisù"], "allergens": ["gluten", "milk", "eggs"], "confidence": 0.9},
+    {"match": ["lasagna", "lasagne"], "allergens": ["gluten", "milk", "eggs"], "confidence": 0.9},
+    {"match": ["parmigiana"], "allergens": ["gluten", "milk"], "confidence": 0.9},
+    {"match": ["arancini", "arancine"], "allergens": ["gluten", "milk", "eggs"], "confidence": 0.85},
+    {"match": ["cannoli"], "allergens": ["gluten", "milk", "nuts"], "confidence": 0.85},
+    {"match": ["fritto misto"], "allergens": ["gluten", "fish", "crustaceans", "molluscs"], "confidence": 0.85},
+    {"match": ["spaghetti alle vongole"], "allergens": ["gluten", "molluscs"], "confidence": 0.95},
+    {"match": ["risotto ai frutti di mare"], "allergens": ["molluscs", "crustaceans", "fish", "milk"], "confidence": 0.85},
+    {"match": ["bistecca alla fiorentina"], "allergens": [], "confidence": 0.7},
+    {"match": ["pesto genovese"], "allergens": ["nuts", "milk"], "confidence": 0.9},
+    {"match": ["zuppa inglese"], "allergens": ["gluten", "milk", "eggs"], "confidence": 0.9},
+    {"match": ["spaghetti allo scoglio"], "allergens": ["gluten", "molluscs", "crustaceans"], "confidence": 0.9}
   ],
   "exceptions": [
-    {
-      "match": [
-        "gnocchi di patate"
-      ],
-      "allergens": [
-        "gluten"
-      ],
-      "confidence": 0.6
-    },
-    {
-      "match": [
-        "risotto"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.5
-    },
-    {
-      "match": [
-        "soffritto"
-      ],
-      "allergens": [
-        "celery"
-      ],
-      "confidence": 0.8
-    },
-    {
-      "match": [
-        "pasta e fagioli"
-      ],
-      "allergens": [
-        "gluten",
-        "celery"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "match": [
-        "minestrone"
-      ],
-      "allergens": [
-        "gluten",
-        "celery"
-      ],
-      "confidence": 0.8
-    },
-    {
-      "match": [
-        "polenta"
-      ],
-      "allergens": [
-        "milk"
-      ],
-      "confidence": 0.7
-    }
+    {"match": ["gnocchi di patate"], "allergens": ["gluten"], "confidence": 0.6},
+    {"match": ["risotto"], "allergens": ["milk"], "confidence": 0.5},
+    {"match": ["soffritto"], "allergens": ["celery"], "confidence": 0.8},
+    {"match": ["pasta e fagioli"], "allergens": ["gluten", "celery"], "confidence": 0.85},
+    {"match": ["minestrone"], "allergens": ["gluten", "celery"], "confidence": 0.8},
+    {"match": ["polenta"], "allergens": ["milk"], "confidence": 0.7},
+    {"match": ["pasta senza glutine"], "allergens": ["gluten"], "confidence": 0.3}
   ]
 }
