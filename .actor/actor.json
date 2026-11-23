@@ -1,13 +1,21 @@
 {
   "actorSpecification": 1,
   "name": "eu-14-allergen-menu-digitizer",
-  "title": "EU-14 Allergen Menu Digitizer",
-  "description": "Digitizes restaurant menu images/PDFs and returns structured JSON with dish names, prices, EU-14 allergen tags, dietary classification, and nutrition estimates.",
-  "version": "1.0",
-  "dockerfile": "../Dockerfile",
-  "readme": "../ACTOR.md",
+  "title": "EU-14 Allergen Menu Scraper & Compliance Extractor",
+  "description": "Extract EU-14 allergens, ingredients, and prices from menu images and PDFs. Audit-ready JSON with timestamps. BYOK Gemini key.",
+  "version": "0.0",
+  "buildTag": "latest",
+  "categories": ["DATA_EXTRACTION", "FOOD_AND_BEVERAGE"],
+  "meta": {
+    "title": "EU-14 Allergen Menu Scraper & Compliance Extractor",
+    "description": "Extract EU-14 allergens, ingredients, and prices from menu images and PDFs. Audit-ready JSON with timestamps. BYOK Gemini key.",
+    "seoTitle": "EU-14 Allergen Menu Scraper & Compliance Extractor",
+    "seoDescription": "Extract EU-14 allergens, ingredients, and prices from menu images and PDFs. Audit-ready JSON with timestamps. BYOK Gemini key."
+  },
   "input": "../input_schema.json",
   "output": "./output_schema.json",
+  "dockerfile": "../Dockerfile",
+  "readme": "../ACTOR.md",
   "storages": {
     "dataset": "./dataset_schema.json"
   }
