@@ -1,50 +1,24 @@
-# Plain-language guide for this Actor
+# EU-14 Allergen Menu Scraper & Compliance Extractor
 
-This is a plain-language (no-code) guide to understanding, running, and deploying the EU-14 Allergen Menu Digitizer.
+Extract EU-14 allergens, ingredients, and prices from any restaurant menu - images and PDFs, in any cuisine. This AI-powered Actor digitizes restaurant menus in any language and any cuisine, and extracts the 14 EU allergens (or 9 US allergens) automatically. It generates audit-ready JSON with timestamps. Bring Your Own Key (BYOK) for zero inference markups.
 
-## What it does
+## How to Extract Allergens from Restaurant Menus
+1. Provide the URL to your menu image or PDF.
+2. Paste your Gemini API key.
+3. Select your jurisdiction (`EU` for 14 allergens, or `US-CA` for 9).
+4. Run the Actor and download your JSON dataset.
 
-Used a restaurant menu image or PDF, and turned it into a list of dishes with:
-- dish names (translated into the language you want),
-- prices,
-- a list of ingredients, split into simple pieces,
-- allergen tags from the EU-14 list, with a confidence score for each,
-- whether it is vegan, vegetarian, pescetarian, or other,
-- an estimated nutrition figure,
-- a confidence score for the whole extraction, and a flag telling you which records need a human to check.
+## Any Cuisine, Any Menu
+The Actor works on menus from every cuisine - Italian, Indian, Japanese, Mexican, and everything in between. By default it runs general multi-cuisine extraction, and a built-in cuisine keyword engine (general + Italian + Indian + Japanese + Mexican) boosts confidence beyond what the vision AI reads alone.
 
-It uses a Gemini language model, but the key is supplied by the person running it, so the person who owns the actor does not pay for the AI.
+## EU-14 vs. US-9 Allergen Compliance
+The Actor supports two frameworks. The EU framework covers the 14 allergens mandated by EU Regulation 1169/2011. The US-CA framework covers the 9 major allergens mandated by California SB 68 (effective July 2026), including sesame.
 
-## How to run it on your own computer
+## Output Format: Structured JSON with Allergen Confidence Scores
+Every dish is returned as a JSON object containing `dishName`, `price`, `ingredients`, `eu14Allergens` (with confidence scores), `dietaryType`, and `nutritionEstimate`. Records with a confidence score below 0.6 are flagged with `needsReview: true`.
 
-1. Open a terminal in this folder.
-2. Install the software the project needs (`npm install`).
-3. Edit the input file with your menu URLs and your own Gemini key.
-4. Start it (`npm start`).
+## Multi-Cuisine Allergen Keyword Engine
+The Actor ships with cuisine-specific allergen keyword overrides for general, Italian, Indian, Japanese, and Mexican menus. The Italian vertical is the deepest (131 ingredient rules + 15 compound-dish rules + 7 exceptions), but it is an optional override on top of the default general multi-cuisine engine.
 
-## How to put it on Apify so other people can use it
-
-1. Create a new Actor on Apify.
-2. Point it at this folder.
-3. Add the Gemini key as a secret setting.
-4. Build and run it.
-
-For PDF menus, the actor works best when PDF page rendering is installed on the server. The build file (Dockerfile) already installs poppler-utils, so PDFs work out of the box.
-
-## What you should check before anything goes live
-
-- The unit tests pass with `npm test`.
-- The Gemini key works by trying one menu URL by hand.
-- A PDF with more than ten pages does not break the actor.
-
-## Where the important files are
-
-- The main entry point is `actor.js`.
-- The input and output rules are in `input_schema.json` and `README.md`.
-- The allergen maps are in `src/cuisineMaps*.js`.
-- The tests are in `tests/`.
-- The handoff report is `HANDOFF_REVIEW.md`.
-
-## Ready for production?
-
-When you have finished the checks above, the project is ready. The report and files can be submitted to the main branch, and the folder can be handed over to be deployed.
+## Pricing
+This Actor uses a Bring-Your-Own-Key (BYOK) model. You pay Apify only for compute time, and you pay your AI provider directly for API usage. There are no inference markups.
