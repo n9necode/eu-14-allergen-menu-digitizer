@@ -1,46 +1,30 @@
-# EU-14 Allergen Menu Digitizer
+# EU-14 Allergen Menu Scraper & Compliance Extractor
 
-Apify Actor that accepts restaurant menu images/PDFs and returns structured JSON with dish names, prices, atomic ingredients, EU-14 (or US-9) allergen tags with confidence scores, dietary classification, and nutrition estimates.
+Extract EU-14 allergens, ingredients, and prices from menu images and PDFs. This Actor generates audit-ready JSON with timestamps. Bring Your Own Key (BYOK) for zero inference markups.
 
-## How it works
+## What is the EU-14 Allergen Menu Scraper?
+This AI-powered Actor digitizes restaurant menus and extracts the 14 EU allergens (or 9 US allergens) automatically. It is designed for food-tech developers, restaurant chains, and compliance auditors who need structured, legally defensible menu data.
 
-1. Downloads each menu URL (image or PDF).
-2. Renders PDF pages to images with poppler-utils (`pdftoppm`).
-3. Sends pages to Gemini (bring-your-own API key) with a structured-response schema.
-4. Normalizes the response, applies cuisine-specific allergen keyword rules, classifies the dietary type, and estimates nutrition.
-5. Pushes one record per dish to the dataset.
+## How to Extract Allergens from Restaurant Menus
+1. Provide the URL to your menu image or PDF.
+2. Paste your Gemini or Groq API key.
+3. Select your jurisdiction (`EU` for 14 allergens, or `US-CA` for 9).
+4. Run the Actor and download your JSON dataset.
 
-## Input
+## EU-14 vs. US-9 Allergen Compliance
+The Actor supports two frameworks. The **EU framework** covers the 14 allergens mandated by EU Regulation 1169/2011. The **US-CA framework** covers the 9 major allergens mandated by California SB 68 (effective July 2026), including sesame.
 
-- `menuImageUrls` (required): array of URLs to menu images or PDFs.
-- `geminiApiKey` (required, secret): the user's own Gemini API key (BYOK - you pay only for your own inference).
-- `outputLanguage` (default "en"): language for translated dish names and ingredient display names.
-- `sourceLanguageHint` (optional): helps when the menu is in a non-Latin script.
-- `cuisineVertical` (default "general"): "italian" | "indian" | "japanese" | "mexican" | "general" - loads cuisine-specific allergen keyword overrides.
-- `maxPagesPerPdf` (default 10): cap on PDF pages rendered.
-- `jurisdiction` (default "EU"): "EU" (14 allergens, Regulation (EU) No 1169/2011) or "US-CA" (9 allergens).
+## How to Automate California SB 68 Menu Audits
+If you operate restaurant chains in California with 20+ locations, you can use this Actor to automatically audit your digital menus for the 9 major allergens. The output includes a `jurisdiction` field and `extractionTimestamp` for legal provenance.
 
-## Output (one record per dish)
+## Supported Inputs: Menu Images, PDFs, and URLs
+The Actor accepts standard image formats (JPG, PNG, WEBP) and PDF menus. It uses `poppler-utils` for PDF rendering and advanced Vision AI for OCR extraction.
 
-`dishName`, `originalName`, `category`, `price`, `ingredients` (each with `englishName`, `displayName`, and `eu14Allergens[{allergen, confidence}]`), `dietaryType` (vegan | vegetarian | pescetarian | other), `dietaryExplanation`, `allergenSummary`, `nutritionEstimate` ({calories, proteinG, fatG, carbsG}), `sourceImageUrl`, `confidence` (0-1), `needsReview` (true if confidence < 0.6).
+## Output Format: Structured JSON with Allergen Confidence Scores
+Every dish is returned as a JSON object containing `dishName`, `price`, `ingredients`, `eu14Allergens` (with confidence scores), `dietaryType`, and `nutritionEstimate`. Records with a confidence score below 0.6 are flagged with `needsReview: true`.
 
-## Local development
+## The "Italian Moat"
+This Actor includes a proprietary 113-rule keyword engine specifically trained for Italian cuisine. It automatically flags ingredients like *semolina* (gluten), *ghee* (milk), and *guanciale* (pork) with high accuracy.
 
-```bash
-npm install
-node --test tests/
-# run locally with an INPUT.json file (see src/apifyShim.js)
-```
-
-## Project structure
-
-```
-actor.js                        # Apify entry point (orchestrates the pipeline)
-src/                            # pipeline modules (downloader, pdfRenderer, geminiClient,
-                                #   responseParser, allergenTagger, dietaryClassifier,
-                                #   nutritionEstimator, config)
-tests/                          # node:test suite
-input_schema.json               # Apify input schema
-output_schema.json              # Apify output schema
-Dockerfile                      # Apify image build (Alpine + poppler-utils)
-```
+## Pricing
+This Actor uses a Bring-Your-Own-Key (BYOK) model. You pay Apify only for compute time, and you pay your AI provider directly for API usage. There are no inference markups.
